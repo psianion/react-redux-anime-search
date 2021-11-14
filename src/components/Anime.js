@@ -17,6 +17,7 @@ const StyledAnime = styled(motion.div)`
   box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
+  padding-bottom: 2rem;
 
   img {
     width: 100%;

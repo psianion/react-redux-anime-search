@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <AnimeLists>
-      <h1>Upcoming Anime</h1>
+      <h2>Upcoming Anime</h2>
       <AnimeList>
         {upcoming.slice(0, 8).map((anime) => (
           <Anime
@@ -29,7 +29,7 @@ const Home = () => {
           />
         ))}
       </AnimeList>
-      <h1>Ongoing Anime</h1>
+      <h2>Ongoing Anime</h2>
       <AnimeList>
         {ongoing.slice(0, 8).map((anime) => (
           <Anime
@@ -42,7 +42,7 @@ const Home = () => {
           />
         ))}
       </AnimeList>
-      <h1>Popular Anime</h1>
+      <h2>Popular Anime</h2>
       <AnimeList>
         {popular.slice(0, 8).map((anime) => (
           <Anime
@@ -61,8 +61,8 @@ const Home = () => {
 
 const AnimeLists = styled(motion.div)`
   padding: 0rem 5rem;
-  h1 {
-    padding: 1rem 0rem;
+  h2 {
+    padding: 3rem 0rem;
   }
 `;
 
