@@ -7,25 +7,30 @@ import { fetchSearch } from "../actions/animeAction";
 import { useDispatch } from "react-redux";
 import { fadeIn } from "../animations";
 
-const Nav = () => {
+const Nav = ({ setPageNum, setSearchedData }) => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
 
   const inputHandler = (e) => {
     setTextInput(e.target.value);
   };
+
   const submitSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchSearch(textInput));
+    setPageNum(1);
+    setSearchedData([]);
+    dispatch(fetchSearch(textInput, 1));
     setTextInput("");
   };
+
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
   };
+
   return (
     <StyledNav variants={fadeIn} initial="hidden" animate="show">
       <Logo onClick={clearSearched}>
-        <h1>Ignite</h1>
+        <h1>Find Anime</h1>
       </Logo>
       <form className="search">
         <input value={textInput} onChange={inputHandler} type="text" />
@@ -38,19 +43,29 @@ const Nav = () => {
 };
 
 const StyledNav = styled(motion.nav)`
-  padding: 3rem 5rem;
+  padding: 2rem;
   text-align: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   input {
-    width: 30%;
-    font-size: 1.5rem;
+    width: 40%;
+    font-size: 2rem;
     padding: 0.5rem;
     border: none;
+    border-radius: 0.2rem;
     margin-top: 1rem;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
+
   button {
     font-size: 1.5rem;
     border: none;
+    border-radius: 0.2rem;
     padding: 0.5rem 2rem;
     cursor: pointer;
     background: #ff7676;
@@ -63,6 +78,11 @@ const Logo = styled(motion.div)`
   justify-content: center;
   padding: 1rem;
   cursor: pointer;
+  h1 {
+    font-size: 5rem;
+    letter-spacing: 10px;
+    font-family: "Bangers", sans-serif;
+  }
   img {
     height: 2rem;
     width: 2rem;

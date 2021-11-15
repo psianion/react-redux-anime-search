@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAnime } from "../actions/animeAction";
+import { loadAnime, fetchSearch } from "../actions/animeAction";
 import Anime from "../components/Anime";
 import AnimeDetail from "../components/AnimeDetail";
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router";
+import { fadeIn } from "../animations";
 
-const Home = () => {
+const Home = ({ searchedData, setSearchedData, setPageNum, pageNum }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -17,22 +18,32 @@ const Home = () => {
     dispatch(loadAnime());
   }, [dispatch]);
 
-  const { popular, upcoming, ongoing, searched } = useSelector(
+  const { popular, upcoming, ongoing, searched, query } = useSelector(
     (state) => state.anime
   );
 
+  useEffect(() => {
+    setSearchedData(searched);
+  }, [searched]);
+
+  const loadMore = async () => {
+    setSearchedData((searchedData) => [...searchedData, searched]);
+    dispatch(fetchSearch(query, pageNum));
+    setPageNum(pageNum + 1);
+  };
+
   return (
     <>
-      <AnimeLists>
+      <AnimeLists variants={fadeIn} initial="hidden" animate="show">
         <AnimateSharedLayout type="crossfade">
           <AnimatePresence>
             {pathId && <AnimeDetail pathId={pathId} />}
           </AnimatePresence>
           {searched.length ? (
             <>
-              <h2>Searched Anime</h2>
+              <h2>Search Results</h2>
               <AnimeList>
-                {searched.map((anime) => (
+                {searchedData.map((anime) => (
                   <Anime
                     title={anime.title}
                     id={anime.mal_id}
@@ -43,6 +54,7 @@ const Home = () => {
                   />
                 ))}
               </AnimeList>
+              <button onClick={loadMore}>Click</button>
             </>
           ) : (
             <>

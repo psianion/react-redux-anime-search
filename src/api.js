@@ -12,5 +12,5 @@ export const ongoingAnimeURL = () => `${base_url}${ongoing_anime}`;
 export const animeDetailsURL = (mal_id) => `${base_url}anime/${mal_id}`;
 export const animePhotosURL = (mal_id) => `${base_url}anime/${mal_id}/pictures`;
 
-export const searchAnimeURL = (name) =>
-  `${base_url}search/anime?q=${name}&page=1&limit=16`;
+export const searchAnimeURL = (name, pgnum) =>
+  `${base_url}search/anime?q=${name}&page=${pgnum}&limit=16`;

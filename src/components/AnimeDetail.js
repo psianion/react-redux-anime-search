@@ -60,6 +60,12 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+  }
 `;
 
 const Detail = styled(motion.div)`

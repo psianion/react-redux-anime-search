@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailsAction";
 import { Link } from "react-router-dom";
+import { popup } from "../animations";
 
 function Anime({ title, id, start_date, image, episodes }) {
-  const stringPathId = id.toString();
+  const stringPathId = "" + id;
 
   const dispatch = useDispatch();
 
@@ -16,7 +17,13 @@ function Anime({ title, id, start_date, image, episodes }) {
   };
 
   return (
-    <StyledAnime layoutId={stringPathId} onClick={loadDetailHandler}>
+    <StyledAnime
+      variants={popup}
+      initial="hidden"
+      animate="show"
+      layoutId={stringPathId}
+      onClick={loadDetailHandler}
+    >
       <Link to={`/anime/${id}`}>
         <motion.img
           layoutId={`image ${stringPathId}`}

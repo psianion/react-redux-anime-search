@@ -18,6 +18,7 @@ const animeReducer = (state = initState, action) => {
       return {
         ...state,
         searched: action.payload.searched,
+        query: action.payload.query,
       };
     case "CLEAR_SEARCHED":
       return {

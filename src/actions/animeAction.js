@@ -20,13 +20,14 @@ export const loadAnime = () => async (dispatch) => {
   });
 };
 
-export const fetchSearch = (game_name) => async (dispatch) => {
-  const searchGames = await axios.get(searchAnimeURL(game_name));
+export const fetchSearch = (game_name, page_num) => async (dispatch) => {
+  const searchGames = await axios.get(searchAnimeURL(game_name, page_num));
 
   dispatch({
     type: "FETCH_SEARCHED",
     payload: {
       searched: searchGames.data.results,
+      query: game_name,
     },
   });
 };
