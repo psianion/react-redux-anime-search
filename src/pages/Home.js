@@ -47,7 +47,7 @@ const Home = ({ searchedData, setSearchedData, setPageNum, pageNum }) => {
             <>
               <h2>Search Results</h2>
               <AnimeList>
-                {searchedData.map((anime) => (
+                {searched.map((anime) => (
                   <Anime
                     title={anime.title}
                     id={anime.mal_id}
