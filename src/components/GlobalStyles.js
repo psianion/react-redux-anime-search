@@ -19,6 +19,7 @@ html {
 body {
     font-family: "Montserrat", sans-serif;
     color: #333;
+    background-color: #DCDCDC;
     width: 100%;
 }
 
@@ -28,9 +29,12 @@ h2 {
 
 h3 {
     font-size: 1.3rem;
-    padding: 1rem;
+    padding: 1rem 0rem;
 }
 
+img {
+    display: block;
+}
 p {
     font-size: 1rem;
     line-height: 200%;
