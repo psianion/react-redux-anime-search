@@ -21,6 +21,8 @@ const Home = ({ searchedData, setSearchedData, setPageNum, pageNum }) => {
   const { popular, upcoming, ongoing, searched, query } = useSelector(
     (state) => state.anime
   );
+  {
+    /*
 
   useEffect(() => {
     setSearchedData(searched);
@@ -31,6 +33,8 @@ const Home = ({ searchedData, setSearchedData, setPageNum, pageNum }) => {
     dispatch(fetchSearch(query, pageNum));
     setPageNum(pageNum + 1);
   };
+*/
+  }
 
   return (
     <>
@@ -54,7 +58,6 @@ const Home = ({ searchedData, setSearchedData, setPageNum, pageNum }) => {
                   />
                 ))}
               </AnimeList>
-              <button onClick={loadMore}>Click</button>
             </>
           ) : (
             <>
